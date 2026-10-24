@@ -1,9 +1,9 @@
 """Relevance-gated GSP auction for sponsored agent recommendations."""
+
 from __future__ import annotations
 
 import itertools
 import re
-from collections import defaultdict
 from dataclasses import dataclass, field
 
 __all__ = ["Campaign", "AdServer", "relevance"]
@@ -67,10 +67,14 @@ class AdServer:
 
     def add(self, advertiser, offer, intents, keywords, bid, daily_budget, quality=0.7, **attributes) -> Campaign:
         cid = f"C{next(self._ids)}"
-        self.campaigns[cid] = Campaign(cid, advertiser, offer, set(intents), set(keywords), bid, daily_budget, quality, attributes)
+        self.campaigns[cid] = Campaign(
+            cid, advertiser, offer, set(intents), set(keywords), bid, daily_budget, quality, attributes
+        )
         return self.campaigns[cid]
 
-    def auction(self, query: str, intent: str, constraints: dict | None = None, organic: list[str] | None = None) -> dict:
+    def auction(
+        self, query: str, intent: str, constraints: dict | None = None, organic: list[str] | None = None
+    ) -> dict:
         constraints = constraints or {}
         eligible = []
         for c in self.campaigns.values():
@@ -84,18 +88,29 @@ class AdServer:
             eligible.append((c.bid * c.quality * rel, c, rel))
         eligible.sort(key=lambda x: -x[0])
         winners = []
-        for i, (rank_score, c, rel) in enumerate(eligible[:SLOTS]):
+        for i, (_rank_score, c, rel) in enumerate(eligible[:SLOTS]):
             nxt = eligible[i + 1][0] if i + 1 < len(eligible) else 0.0
             price = max(RESERVE_CPC, nxt / (c.quality * rel) + 0.01) if nxt else RESERVE_CPC
             price = round(min(price, c.bid), 2)
             imp_id = f"I{next(self._ids)}"
             self.impressions[imp_id] = {"campaign": c.campaign_id, "cpc": price}
             c.impressions += 1
-            winners.append({"impression_id": imp_id, "sponsored": True, "label": f"Sponsored by {c.advertiser}",
-                            "offer": c.offer, "cpc": price, "relevance": rel})
+            winners.append(
+                {
+                    "impression_id": imp_id,
+                    "sponsored": True,
+                    "label": f"Sponsored by {c.advertiser}",
+                    "offer": c.offer,
+                    "cpc": price,
+                    "relevance": rel,
+                }
+            )
         organic = [o for o in (organic or []) if o not in {w["offer"] for w in winners}]
-        return {"sponsored": winners, "organic": organic,
-                "disclosure": "Results marked sponsored are paid placements." if winners else ""}
+        return {
+            "sponsored": winners,
+            "organic": organic,
+            "disclosure": "Results marked sponsored are paid placements." if winners else "",
+        }
 
     def click(self, impression_id: str) -> float:
         imp = self.impressions[impression_id]
@@ -121,7 +136,16 @@ class AdServer:
     def report(self) -> list[dict]:
         rows = []
         for c in self.campaigns.values():
-            rows.append({"campaign": c.campaign_id, "advertiser": c.advertiser, "impressions": c.impressions, "clicks": c.clicks,
-                         "ctr": round(c.clicks / c.impressions, 3) if c.impressions else 0, "spend": c.spent,
-                         "conversions": c.conversions, "roas": round(c.revenue / c.spent, 2) if c.spent else None})
+            rows.append(
+                {
+                    "campaign": c.campaign_id,
+                    "advertiser": c.advertiser,
+                    "impressions": c.impressions,
+                    "clicks": c.clicks,
+                    "ctr": round(c.clicks / c.impressions, 3) if c.impressions else 0,
+                    "spend": c.spent,
+                    "conversions": c.conversions,
+                    "roas": round(c.revenue / c.spent, 2) if c.spent else None,
+                }
+            )
         return rows
