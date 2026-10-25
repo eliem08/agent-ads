@@ -1,0 +1,48 @@
+[
+  {
+    "advertiser": "Harbor Hotels",
+    "offer": "Harbor Lisbon",
+    "intents": [
+      "hotel"
+    ],
+    "keywords": [
+      "lisbon",
+      "hotel"
+    ],
+    "bid": 2.0,
+    "daily_budget": 50,
+    "quality": 0.8,
+    "attributes": {
+      "price": 150
+    }
+  },
+  {
+    "advertiser": "Alfama Stays",
+    "offer": "Alfama Rooms",
+    "intents": [
+      "hotel"
+    ],
+    "keywords": [
+      "lisbon",
+      "hotel"
+    ],
+    "bid": 1.2,
+    "daily_budget": 30,
+    "quality": 0.9,
+    "attributes": {
+      "price": 110
+    }
+  },
+  {
+    "advertiser": "Skyline Air",
+    "offer": "Skyline Flights",
+    "intents": [
+      "flight"
+    ],
+    "keywords": [
+      "flights"
+    ],
+    "bid": 5.0,
+    "daily_budget": 100
+  }
+]

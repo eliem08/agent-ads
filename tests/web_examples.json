@@ -1,0 +1,17 @@
+[
+ {
+  "op": "auction",
+  "payload": {
+   "campaigns": {
+    "name": "campaigns.json",
+    "content": "[\n  {\n    \"advertiser\": \"Harbor Hotels\",\n    \"offer\": \"Harbor Lisbon\",\n    \"intents\": [\n      \"hotel\"\n    ],\n    \"keywords\": [\n      \"lisbon\",\n      \"hotel\"\n    ],\n    \"bid\": 2.0,\n    \"daily_budget\": 50,\n    \"quality\": 0.8,\n    \"attributes\": {\n      \"price\": 150\n    }\n  },\n  {\n    \"advertiser\": \"Alfama Stays\",\n    \"offer\": \"Alfama Rooms\",\n    \"intents\": [\n      \"hotel\"\n    ],\n    \"keywords\": [\n      \"lisbon\",\n      \"hotel\"\n    ],\n    \"bid\": 1.2,\n    \"daily_budget\": 30,\n    \"quality\": 0.9,\n    \"attributes\": {\n      \"price\": 110\n    }\n  },\n  {\n    \"advertiser\": \"Skyline Air\",\n    \"offer\": \"Skyline Flights\",\n    \"intents\": [\n      \"flight\"\n    ],\n    \"keywords\": [\n      \"flights\"\n    ],\n    \"bid\": 5.0,\n    \"daily_budget\": 100\n  }\n]\n"
+   },
+   "query": "hotel in lisbon",
+   "intent": "hotel"
+  }
+ },
+ {
+  "op": "demo",
+  "payload": {}
+ }
+]
