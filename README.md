@@ -1,15 +1,43 @@
-# agent-ads
+<!-- sell-kit:start -->
+# Agent Ads
 
 [![CI](https://github.com/eliem08/agent-ads/actions/workflows/ci.yml/badge.svg)](https://github.com/eliem08/agent-ads/actions/workflows/ci.yml)
 
-> **Google Ads for agents** — pay to be what the agent recommends.
+> **Pay to be the option an AI agent recommends, with honest disclosure.**
 
-When a user asks their agent "book me a hotel in Lisbon" or "what CRM should
-we use?", the agent picks for them. Brands will pay to be in that shortlist.
-`agent-ads` is an ad server built for agents — with the guardrails that keep
-it from poisoning recommendations.
+**Who it's for:** Assistant and agent platforms that want an ad business, and the brands that advertise.
 
-## What the MVP does
+**The problem:** Agents will recommend products, and without a fair auction and clear disclosure, sponsored answers become hidden ads.
+
+**What you get:** A relevance-gated second-price auction with mandatory sponsored labels, single-billed clicks, conversion tracking and budget control.
+
+## Quickstart
+
+Customers receive a release archive with the wheel and the examples. Python 3.10+ and no other dependencies.
+
+```bash
+pip install agent_ads-0.1.0-py3-none-any.whl
+agent-ads demo
+```
+
+## Pricing
+
+Every plan starts with a 14-day free trial. Prices in USD, billed monthly unless noted.
+
+| Plan | Price | Includes |
+|---|---|---|
+| **Platform Starter** | $499 per month | Up to 1M auctions a month; Disclosure built in; Reporting |
+| **Platform Growth** | $1,999 per month | Unlimited auctions; Custom relevance rules; Advertiser console |
+| **Rev share** | Custom (% of ad revenue, contact sales) | No fixed fee; Managed demand; Dedicated support |
+
+To start a trial or buy a plan, email **sales@YOUR-DOMAIN.com**.
+
+## Licence
+
+Proprietary. Copyright (c) 2026 eliem08. All rights reserved. Use requires a paid plan or an active trial; see [LICENSE](LICENSE).
+<!-- sell-kit:end -->
+
+## What it does
 
 - **Campaigns**: advertiser, offer, intent categories + keywords, max CPC or
   CPA bid, daily budget, landing / action URL
@@ -34,7 +62,7 @@ agent-ads demo
 ## Roadmap
 
 - Agent publisher SDK (MCP tool `ads.get_sponsored(query, intent)`) + revenue share
-- Conversion attribution through agent purchase receipts (pairs with agent-plaid)
+- Conversion attribution through agent purchase receipts (pairs with grantgate)
 - Policy engine: no ads for health/finance advice categories without certification
 
 ## Development

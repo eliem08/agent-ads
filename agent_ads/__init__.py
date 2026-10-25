@@ -1,4 +1,4 @@
-"""Google Ads for agents: pay to be what the agent recommends."""
+"""Agent Ads: Pay to be the option an AI agent recommends, with honest disclosure."""
 
 from .core import *
 
