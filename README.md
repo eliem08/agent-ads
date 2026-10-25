@@ -46,7 +46,7 @@ Every plan starts with a 14-day free trial. Prices in USD, billed monthly unless
 | **Platform Growth** | $1,999 per month | Unlimited auctions; Custom relevance rules; Advertiser console |
 | **Rev share** | Custom (% of ad revenue, contact sales) | No fixed fee; Managed demand; Dedicated support |
 
-To start a trial or buy a plan, email **sales@YOUR-DOMAIN.com**.
+To start a trial or buy a plan, [request access](https://github.com/eliem08/agent-ads/issues/new?title=Agent%20Ads%20trial&labels=sales).
 
 ## Licence
 
