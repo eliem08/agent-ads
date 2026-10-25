@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import itertools
+import math
 import re
 from dataclasses import dataclass, field
 
@@ -66,6 +67,11 @@ class AdServer:
         self._ids = itertools.count(1)
 
     def add(self, advertiser, offer, intents, keywords, bid, daily_budget, quality=0.7, **attributes) -> Campaign:
+        for name, v in (("bid", bid), ("daily_budget", daily_budget)):
+            if not (math.isfinite(v) and v > 0):
+                raise ValueError(f"{name} must be a finite number > 0, got {v!r}")
+        if not 0 < quality <= 1:
+            raise ValueError("quality must be in (0, 1]")
         cid = f"C{next(self._ids)}"
         self.campaigns[cid] = Campaign(
             cid, advertiser, offer, set(intents), set(keywords), bid, daily_budget, quality, attributes
@@ -114,6 +120,8 @@ class AdServer:
 
     def click(self, impression_id: str) -> float:
         imp = self.impressions[impression_id]
+        if imp.get("clicked"):
+            return 0.0  # repeat clicks on one impression are free: no double billing, no click-fraud lever
         c = self.campaigns[imp["campaign"]]
         charge = min(imp["cpc"], max(0.0, c.daily_budget - c.spent))
         c.spent = round(c.spent + charge, 2)
@@ -125,6 +133,11 @@ class AdServer:
         imp = self.impressions[impression_id]
         if not imp.get("clicked"):
             raise ValueError("conversion without click")
+        if imp.get("converted"):
+            raise ValueError("impression already converted")
+        if not (math.isfinite(value) and value >= 0):
+            raise ValueError("conversion value must be a finite number >= 0")
+        imp["converted"] = True
         c = self.campaigns[imp["campaign"]]
         c.conversions += 1
         c.revenue += value

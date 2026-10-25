@@ -42,6 +42,23 @@ class Tests(unittest.TestCase):
         res = self.s.auction("hotel lisbon", "hotel", {"max_price": 200}, organic=["Hotel A", "Other"])
         self.assertEqual(res["organic"], ["Other"])
 
+    def test_repeat_clicks_and_conversions_are_not_billed_or_counted_twice(self):
+        imp = self.s.auction("hotel lisbon", "hotel", {"max_price": 200})["sponsored"][0]["impression_id"]
+        first = self.s.click(imp)
+        self.assertGreater(first, 0)
+        spent = sum(c.spent for c in self.s.campaigns.values())
+        for _ in range(5):
+            self.assertEqual(self.s.click(imp), 0.0)
+        self.assertEqual(sum(c.spent for c in self.s.campaigns.values()), spent)
+        self.s.convert(imp, 300)
+        with self.assertRaises(ValueError):
+            self.s.convert(imp, 300)
+
+    def test_campaign_validation(self):
+        for bid, budget, quality in ((float("nan"), 10, 0.5), (-1, 10, 0.5), (1, 0, 0.5), (1, 10, 0), (1, 10, 5)):
+            with self.subTest(bid=bid, budget=budget, quality=quality), self.assertRaises(ValueError):
+                self.s.add("X", "Offer", ["hotel"], ["hotel"], bid, budget, quality)
+
 
 if __name__ == "__main__":
     unittest.main()
