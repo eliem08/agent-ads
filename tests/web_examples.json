@@ -1,5 +1,53 @@
 [
  {
+  "op": "campaign-add",
+  "payload": {
+   "advertiser": "Acme",
+   "offer": "Acme Trail Shoe",
+   "intents": [
+    "buy"
+   ],
+   "keywords": [
+    "running",
+    "shoes",
+    "trail"
+   ],
+   "bid": 1.2,
+   "daily_budget": 20.0,
+   "quality": 0.7,
+   "attr": [
+    "price=120"
+   ]
+  }
+ },
+ {
+  "op": "serve",
+  "payload": {
+   "query": "best trail running shoes",
+   "intent": "buy",
+   "constraint": [
+    "max_price=150"
+   ]
+  }
+ },
+ {
+  "op": "click",
+  "payload": {
+   "impression_id": "I2"
+  }
+ },
+ {
+  "op": "convert",
+  "payload": {
+   "impression_id": "I2",
+   "value": 120.0
+  }
+ },
+ {
+  "op": "report",
+  "payload": {}
+ },
+ {
   "op": "auction",
   "payload": {
    "campaigns": {

@@ -17,8 +17,9 @@ Customers receive a release archive with the wheel and the examples. Python 3.10
 
 ```bash
 pip install agent_ads-0.1.0-py3-none-any.whl
-agent-ads auction examples/campaigns.json --query "hotel in lisbon" --intent hotel
-agent-ads demo
+agent-ads campaign-add Acme "Acme Trail Shoe" --intents buy --keywords running shoes trail --bid 1.2 --daily-budget 20 --attr price=120 --store ads.json
+agent-ads serve --query "best trail running shoes" --intent buy --constraint max_price=150 --store ads.json
+agent-ads click I2 --store ads.json
 ```
 
 ## Web app and API
@@ -33,7 +34,7 @@ docker build -t agent-ads . && docker run -p 8000:8000 -e API_KEYS=sk_... -v age
 
 Every API call needs `Authorization: Bearer <key>` once any key exists; a server on a public address refuses to start without one. Calls are rate-limited per key (60/min, `--rate`) and metered: `agent-ads-web usage` prints calls per key for billing.
 
-Endpoints: `POST /api/demo`, `POST /api/auction`, plus `GET /healthz` and `GET /api/spec` (machine-readable field list).
+Endpoints: `POST /api/demo`, `POST /api/auction`, `POST /api/campaign-add`, `POST /api/campaign-pause`, `POST /api/serve`, `POST /api/click`, `POST /api/convert`, `POST /api/report`, plus `GET /healthz` and `GET /api/spec` (machine-readable field list).
 Files are sent as `{"name": ..., "content": ...}`, folders as `{"files": [...]}` or a base64 zip.
 
 ## Deploy and sell

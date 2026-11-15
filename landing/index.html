@@ -48,8 +48,9 @@
     <h2>Quickstart</h2>
     <p>Python 3.10+, no other dependencies. Your release archive includes the wheel and examples.</p>
     <pre><code>pip install agent_ads-0.1.0-py3-none-any.whl
-agent-ads auction examples/campaigns.json --query &quot;hotel in lisbon&quot; --intent hotel
-agent-ads demo</code></pre>
+agent-ads campaign-add Acme &quot;Acme Trail Shoe&quot; --intents buy --keywords running shoes trail --bid 1.2 --daily-budget 20 --attr price=120 --store ads.json
+agent-ads serve --query &quot;best trail running shoes&quot; --intent buy --constraint max_price=150 --store ads.json
+agent-ads click I2 --store ads.json</code></pre>
   </section>
   <section>
     <h2>Pricing</h2>
