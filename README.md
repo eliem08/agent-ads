@@ -75,8 +75,8 @@ Proprietary. Copyright (c) 2026 eliem08. All rights reserved. Use requires a pai
 
 ## What it does
 
-- **Campaigns**: advertiser, offer, intent categories + keywords, max CPC or
-  CPA bid, daily budget, landing / action URL
+- **Campaigns**: advertiser, offer, intent categories + keywords, max cost-per-click
+  bid, daily budget, offer attributes (e.g. price) for user constraints
 - **Agent-side request**: query, intent, user constraints (e.g. `max_price`),
   and the agent's organic candidates
 - **Relevance gate**: a sponsored offer is only eligible if it matches the
