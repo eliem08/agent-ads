@@ -55,15 +55,18 @@ Buyers pick a plan on `/pricing`, pay on Stripe Checkout and see their API key o
 
 ## Pricing
 
-Every plan starts with a 14-day free trial. Prices in USD, billed monthly unless noted.
+Monthly plans start with a 14-day free trial. Prices in USD, billed monthly unless noted.
 
 | Plan | Price | Includes |
 |---|---|---|
 | **Platform Starter** | $499 per month | Up to 1M auctions a month; Disclosure built in; Reporting |
-| **Platform Growth** | $1,999 per month | Unlimited auctions; Custom relevance rules; Advertiser console |
-| **Rev share** | Custom (% of ad revenue, contact sales) | No fixed fee; Managed demand; Dedicated support |
+| **Platform Growth** | $1,999 per month | Unlimited auctions; Campaign budgets and pause; Conversion reporting |
+| **Rev share** | Custom (% of ad revenue, contact sales) | No fixed fee; Dedicated support |
 
 To start a trial or buy a plan, [request access](https://github.com/eliem08/agent-ads/issues/new?title=Agent%20Ads%20trial&labels=sales).
+
+Plan note: every plan runs the same software, and every API key unlocks all of it. Seat, agent and volume
+limits are licence terms; the code does not enforce them. Support, SLA and done-for-you items are services.
 
 ## Licence
 
