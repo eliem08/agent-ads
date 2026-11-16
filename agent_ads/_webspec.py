@@ -349,4 +349,24 @@ SPEC = {
             "id": "report",
         },
     ],
+    "plans": [
+        {
+            "key": "platform-starter",
+            "name": "Platform Starter",
+            "price": "$499 per month",
+            "features": ["Up to 1M auctions a month", "Disclosure built in", "Reporting"],
+        },
+        {
+            "key": "platform-growth",
+            "name": "Platform Growth",
+            "price": "$1,999 per month",
+            "features": ["Unlimited auctions", "Campaign budgets and pause", "Conversion reporting"],
+        },
+        {
+            "key": "rev-share",
+            "name": "Rev share",
+            "price": "% of ad revenue, contact sales",
+            "features": ["No fixed fee", "Dedicated support"],
+        },
+    ],
 }
